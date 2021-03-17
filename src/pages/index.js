@@ -4,12 +4,10 @@ import MarkdownPreview from "../components/markdownPreview"
 import Markdown from "../components/markdown"
 import Title from "../components/title"
 import Subtitle from "../components/subtitle"
-import Work from "../components/work"
 import Social from "../components/social"
 import Addons from "../components/addons"
 import Skills from "../components/skills"
 import Donate from "../components/donate"
-import Support from "../components/support"
 import { initialSkillState } from "../constants/skills"
 import Loader from "../components/loader"
 import SEO from "../components/seo"
@@ -108,12 +106,6 @@ const IndexPage = () => {
     setSocial(change)
   }
 
-  const handleSupportChange = (field, e) => {
-    let change = { ...support }
-    change[field] = e.target.value
-    setSupport(change)
-  }
-
   const handleCheckChange = field => {
     let change = { ...data }
     change[field] = !change[field]
@@ -122,7 +114,7 @@ const IndexPage = () => {
 
   const generate = () => {
     setShowConfig(false)
-    var tl = new gsap.timeline()
+    const tl = new gsap.timeline()
     tl.to(".generate", {
       scale: 0,
       duration: 0.5,
@@ -429,14 +421,6 @@ const IndexPage = () => {
             handlePrefixChange={handlePrefixChange}
           />
           <Subtitle data={data} handleDataChange={handleDataChange} />
-          <Work
-            prefix={prefix}
-            data={data}
-            link={link}
-            handlePrefixChange={handlePrefixChange}
-            handleLinkChange={handleLinkChange}
-            handleDataChange={handleDataChange}
-          />
           <Skills skills={skills} handleSkillsChange={handleSkillsChange} />
           <Social social={social} handleSocialChange={handleSocialChange} />
           <Addons
@@ -444,10 +428,6 @@ const IndexPage = () => {
             social={social}
             handleCheckChange={handleCheckChange}
             handleDataChange={handleDataChange}
-          />
-          <Support
-            support={support}
-            handleSupportChange={handleSupportChange}
           />
           <div className="section">
             {(data.visitorsBadge ||
@@ -531,9 +511,9 @@ const IndexPage = () => {
 
         {generateMarkdown || generatePreview ? (
           <div className="markdown-section p-4 sm:py-4 sm:px-10">
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full flex  flex-row ">
               <button
-                className="text-base w-1/6 border-2 border-solid border-gray-900 bg-gray-100 flex items-center justify-center p-1"
+                className="text-base w-1/6 border-2 border-solid border-gray-900 bg-gray-100 flex items-center justify-center p-1 "
                 onClick={handleBackToEdit}
               >
                 <ArrowLeftIcon size={24} />
@@ -541,7 +521,7 @@ const IndexPage = () => {
               </button>
 
               <button
-                className="text-base w-1/6 border-2 border-solid border-gray-900 bg-gray-100 flex items-center justify-center p-1"
+                className="text-base w-1/6 border-2 border-solid border-gray-900 bg-gray-100 flex items-center justify-center p-1 mx-8 "
                 id="copy-button"
                 onClick={handleCopyToClipboard}
               >
@@ -556,29 +536,7 @@ const IndexPage = () => {
               </button>
 
               <button
-                className="text-base w-1/6 border-2 border-solid border-gray-900 bg-gray-100 flex items-center justify-center p-1"
-                id="download-md-button"
-                onClick={handleDownloadMarkdown}
-              >
-                <DownloadIcon size={24} />
-                <span className="hidden sm:block" id="download-markdown">
-                  download markdown
-                </span>
-              </button>
-
-              <button
-                className="text-base w-1/6 border-2 border-solid border-gray-900 bg-gray-100 flex items-center justify-center p-1"
-                id="download-json-button"
-                onClick={handleDownloadJson}
-              >
-                <FileCodeIcon size={24} />
-                <span className="hidden sm:block" id="download-json">
-                  download backup
-                </span>
-              </button>
-
-              <button
-                className="text-base w-1/6 border-2 border-solid border-gray-900 bg-gray-100 flex items-center justify-center p-1"
+                className="text-base w-1/6 border-2 border-solid border-gray-900 bg-gray-100 flex items-center justify-center p-1 "
                 onClick={handleGeneratePreview}
               >
                 {previewMarkdown.isPreview ? (
@@ -630,7 +588,7 @@ const IndexPage = () => {
         ) : (
           ""
         )}
-        <div
+        {/* <div
           className={
             "w-full shadow flex flex-col justify-center items-start mt-16 border-2 border-solid border-gray-600 py-2 px-4 " +
             (!showConfig ? "hidden" : "block")
@@ -687,6 +645,7 @@ const IndexPage = () => {
             </div>
           </div>
         </div>
+       */}
       </div>
     </Layout>
   )
